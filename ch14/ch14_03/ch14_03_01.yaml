@@ -1,0 +1,28 @@
+version: 1
+disable_existing_loggers: False
+handlers:
+  console:
+    class: logging.StreamHandler
+    stream: ext://sys.stderr
+    formatter: basic
+  audit_file:
+    class: logging.FileHandler
+    filename: ch14_03_01.log
+    encoding: utf-8
+    formatter: detailed
+formatters:
+  basic:
+    style: "{"
+    format: "{levelname:s}:{name:s}:{message:s}"
+  detailed:
+    style: "{"
+    format: "{levelname:s}:{name:s}:{asctime:s}:{message:s}"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+loggers:
+  audit:
+    handlers: [console,audit_file]
+    level: INFO
+    propagate: False
+root:
+  handlers: [console]
+  level: INFO
