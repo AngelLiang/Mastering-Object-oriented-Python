@@ -1,6 +1,7 @@
 import sys
 import yaml
 import logging
+from logging import config
 
 
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
@@ -15,7 +16,9 @@ class Main:
 
 
 if __name__ == "__main__":
-    logging.config.dictConfig(yaml.load('log_config.yaml'))
+    with open('log_config.yaml', 'r', encoding='utf-8') as f:
+        log_config = yaml.unsafe_load(f.read())
+    config.dictConfig(log_config)
     try:
         application = Main()
         status = application.run()
@@ -23,5 +26,5 @@ if __name__ == "__main__":
         logging.exception(e)
         status = 2
     finally:
-        logging.stutdown()  # 注意这里
+        logging.shutdown()  # 注意这里
     sys.exit(status)

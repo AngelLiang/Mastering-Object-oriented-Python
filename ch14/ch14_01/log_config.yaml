@@ -1,6 +1,11 @@
 version: 1
+ # 定义了一个格式化器，名称为basic
+formatters:
+  basic: 
+    style: "{"
+    format: "{levelname:s}:{name:s}:{message:s}"
+# 我们定义了两个处理程序 console 和 audit_file
 handlers:
-  # 我们定义了两个处理程序 console 和 audit_file
   console:
     class: logging.StreamHandler
     stream: ext://sys.stderr
@@ -10,15 +15,11 @@ handlers:
     filename: p3_c14_audit.log
     encoding: utf-8
     formatter: basic
-  formatters:
-    basic:  # 定义了一个格式化器，名称为basic
-      style: "{"
-      format: "{levelname:s}:{name:s}:{message:s}"
-    loggers:
-      # 定义了两层的日志记录器：verbose和audit
-      verbose:
-        handlers: {console}
-        level: INFO
-      audit:
-        handlers: {audit_file}
-        level: INFO
+# 定义了两层的日志记录器：verbose和audit
+loggers:
+  verbose:
+    handlers: {console}
+    level: INFO
+  audit:
+    handlers: {audit_file}
+    level: INFO
