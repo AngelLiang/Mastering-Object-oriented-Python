@@ -13,7 +13,7 @@ handlers:
     formatter: basic
   audit_file:
     class: logging.FileHandler
-    filename: p3_c14_audit.log
+    filename: ch14_01_07.log
     encoding: utf-8
     formatter: basic
 
@@ -22,6 +22,11 @@ loggers:
   verbose:
     handlers: [console]
     level: INFO
+    propagate: False  # Added
   audit:
     handlers: [audit_file]
+    level: INFO
+    propagate: False  # Added
+  root:  # Added
+    handlers: [console]
     level: INFO
