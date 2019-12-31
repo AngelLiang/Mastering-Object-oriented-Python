@@ -15,8 +15,8 @@ with open('ch14_01_07.yaml', 'r', encoding='utf-8') as f:
     log_config = yaml.unsafe_load(f.read())
 config.dictConfig(log_config)
 
-verbose = logging.getLogger('verbose.example.ComeClass')
-audit = logging.getLogger('audit.example.ComeClass')
+verbose = logging.getLogger('verbose.example.SomeClass')
+audit = logging.getLogger('audit.example.SomeClass')
 verbose.info('Verbose information')
 audit.info('Audit record with before and after')
 
