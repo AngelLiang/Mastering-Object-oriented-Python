@@ -3,11 +3,17 @@
 >>> main.run()
 """
 
-import sys
 import logging
+from logging.config import dictConfig
 from collections import Counter
+import yaml
 
-logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+
+logging.basicConfig(level=logging.INFO)
+with open('ch14_03.yaml', 'r', encoding='utf-8') as f:
+    log_config = yaml.unsafe_load(f.read())
+    # print(log_config)
+    dictConfig(log_config)
 
 
 class Main:
@@ -16,7 +22,7 @@ class Main:
         self.log = logging.getLogger(self.__class__.__qualname__)
 
     def run(self):
-        self.log.info('start')
+        self.log.info('Start')
 
         # Some processing
         self.balance['count'] += 1
