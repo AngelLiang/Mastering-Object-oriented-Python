@@ -3,7 +3,7 @@ version: 1
 formatters:
   basic: 
     style: "{"
-    format: "{levelname:s}:{name:s}:{message:s}"
+    format: "[{asctime:s}] {levelname:s}:{name:s}:{message:s}"
 
 # 定义了两个处理程序 console 和 audit_file
 handlers:
@@ -24,7 +24,8 @@ loggers:
     level: INFO
     propagate: False  # Added
   audit:
-    handlers: [audit_file]
+    # audit 同时输出到文件和console
+    handlers: [audit_file, console]
     level: INFO
     propagate: False  # Added
   root:  # Added
